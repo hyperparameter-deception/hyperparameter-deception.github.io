@@ -150,7 +150,7 @@ body {
                 <font size="5">Transformers as dynamics models</font>
               </b> -->
               <!-- &nbsp; -->
-              Predictive dynamics models often have excellent single-step prediction error, but poor long-horizon accuracy due to compounding errors.
+              Predictive dynamics models often have excellent single-step error, but poor long-horizon accuracy due to compounding errors.
               We show that Transformers are more substantially more reliable long-horizon predictors than state-of-the-art single-step models, even in continuous Markovian domains.
           </p>
           <br>
@@ -161,7 +161,7 @@ body {
             &nbsp;&nbsp;&nbsp;&nbsp;
             <img width=25% src="https://people.eecs.berkeley.edu/~janner/trajectory-transformer/images/striated.png">
             <br>
-            <i>Attention patterns of Trajectory Transformer, showing (right) a discovered <br>Markovian stratetgy and (left) an approach with action smoothing.</i>
+            <i>Attention patterns of Trajectory Transformer, showing (left) a discovered <br>Markovian stratetgy and (right) an approach with action smoothing.</i>
           </center>
           <br>
           </div>
@@ -181,7 +181,7 @@ body {
                <!-- . -->
               <!-- Various control settings can be reduced to slight modifications of beam search with a sequence model. -->
               <ul>
-                <li>Decoding a Trajectory Transformer with unmodified beam search gives rise to a model-based imitative method that optimizes for entire trajectories to match those of an expert policy.</li>
+                <li>Decoding a Trajectory Transformer with unmodified beam search gives rise to a model-based imitative method that optimizes for entire predicted trajectories to match those of an expert policy.</li>
                 <li>Conditioning trajectories on a future desired state alongside previously-encountered states yields a goal-reaching method.</li>
                 <br>
                 <center>
@@ -203,7 +203,7 @@ body {
                   Goal
                 </center>
                 <br>
-                <li>Replacing log-probabilities from the sequence model with reward predictions yields a model-based planning method, surprisingly effective despite lacking the ensembles and pessimism mechanisms usually required to make planning with learned models effective.</li>
+                <li>Replacing log-probabilities from the sequence model with reward predictions yields a model-based planning method, surprisingly effective despite lacking the details usually required to make planning with learned models effective.</li>
                 <br>
                   <center>
                     <img width=28% src="https://people.eecs.berkeley.edu/~janner/trajectory-transformer/images/webpage_offline_halfcheetah.png">
