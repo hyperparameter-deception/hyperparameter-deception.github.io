@@ -20,7 +20,7 @@ div.content a:hover div.text,
 div.ftsubheader a:hover{text-decoration:underline}
 div.title a:hover{text-decoration:none}
 span.jw{text-decoration:underline}
-div.header,div.container,div.content,div.img,div.text{display:inline-block;zoom:1;display*:inline;text-align:justify;margin-left:auto;margin-right:auto;vertical-align:middle;max-width:960px}
+div.header,div.container,div.content,div.img,div.text{display:inline-block;zoom:1;display*:inline;text-align:justify;margin-left:auto;margin-right:auto;vertical-align:middle;max-width:980px}
 div.topic,div.outercontainer,div.project_headline,div.project_title{text-align:center}
 div.header,div.container{min-width:330px}
 div.img,div.text{padding-left:10px;padding-right:10px}

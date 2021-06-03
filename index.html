@@ -39,7 +39,7 @@
 <style>
 body {
   font-family: "Computer Modern Serif", serif;
-  font-size: 15pt;
+  font-size: 14pt;
 }
 
 
@@ -120,6 +120,8 @@ body {
         <video width=100% height=auto autoplay playsinline muted>
           <source src="https://people.eecs.berkeley.edu/~janner/trajectory-transformer/images/gif_single_step.mp4" type="video/mp4">
         </video>
+        <br>
+        <i>Long-horizon predictions of the Trajectory Transformer compared <br>to those of a feedforward single-step dynamics model.</i>
         </center>
         <p>
         <br><br>
@@ -127,11 +129,13 @@ body {
         <div class="content">
           <div class="text">
             <p>
-              <b>
+              <div class="title"><b>Summary</b></div>
+<!--               <b>
                 <font size="5">Summary</font>
-              </b>
-              &nbsp;
-              Lorem ipsum.
+              </b> -->
+              <!-- &nbsp; -->
+              We view reinforcement learning as a generic sequence modeling problem and investigate how much of the usual machinery of reinforcement learning algorithms can be replaced with the tools that have found widespread use in large-scale language modeling.
+              The core of our approach is the Trajectory Transformer, trained on sequences of states, actions, and rewards treated interchangeably, and a set of beam-search-based planners.
           </p>
           </div>
         </div>
@@ -141,13 +145,24 @@ body {
         <div class="content">
           <div class="text">
             <p>
-              <b>
+              <div class="title"><b>Transformers as dynamics models</b></div>
+<!--               <b>
                 <font size="5">Transformers as dynamics models</font>
-              </b>
-              &nbsp;
+              </b> -->
+              <!-- &nbsp; -->
               Predictive dynamics models often have excellent single-step prediction error, but poor long-horizon accuracy due to compounding errors.
-              We show that transformers are more substantially more reliable long-horizon predictors than state-of-the-art single-step models, even in continuous Markovian domains.
+              We show that Transformers are more substantially more reliable long-horizon predictors than state-of-the-art single-step models, even in continuous Markovian domains.
           </p>
+          <br>
+          <br>
+          <center>
+            <img width=25% src="images/markov.png">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <img width=25% src="images/striated.png">
+            <br>
+            <i>Attention patterns of Trajectory Transformer, showing (right) a discovered <br>Markovian stratetgy and (left) an approach with action smoothing.</i>
+          </center>
           <br>
           </div>
         </div>
@@ -157,28 +172,55 @@ body {
         <div class="content">
           <div class="text">
             <p>
-              <b>
-                <font size="5">Imitation, goal-reaching, and offline RL</font>
-              </b>
-              &nbsp;
-              Various control settings can be reduced to slight modifications of beam search with a sequence model.
+              <div class="title"><b>Beam search as trajectory optimizer</b></div>
+   <!--            <b>
+                <font size="5.0">
+                Beam search as trajectory optimizer
+              </font>
+              </b> -->
+               <!-- . -->
+              <!-- Various control settings can be reduced to slight modifications of beam search with a sequence model. -->
               <ul>
-                <li> Decoding with standard beam search is an imitative method.</li>
-                <li>Conditioning on a future desired state alongside previously-encountered states gives rise to a goal-reaching method.</li>
+                <li>Decoding a Trajectory Transformer with unmodified beam search gives rise to a model-based imitative method that optimizes for entire trajectories to match those of an expert policy.</li>
+                <li>Conditioning trajectories on a future desired state alongside previously-encountered states yields a goal-reaching method.</li>
+                <br>
                 <center>
-                  <img width=33% src="images/goals/0.pdf">
-                  <img width=33% src="images/goals/1.pdf">
-                  <img width=33% src="images/goals/2.pdf">
+                  <img width=28% src="images/0.png">
+                  &nbsp;
+                  &nbsp;
+                  <img width=28% src="images/1.png">
+                  &nbsp;
+                  &nbsp;
+                  <img width=28% src="images/2.png">
+                  <br>
+                  <img width=2% src="images/rolloutblack-1.png">
+                  &nbsp;
+                  Start
+                  &nbsp;
+                  &nbsp;
+                  <img width=2% src="images/rolloutblue-1.png">
+                  &nbsp;
+                  Goal
                 </center>
-
-                <li>Replacing log-probabilities from the sequence model reward predictions recovers a model-based planning method. Despite having none of the usual tricks employed to make planning effective with learned models, such as ensembles or distributional penalties, we find this approach surprisingly effective.</li>
+                <br>
+                <li>Replacing log-probabilities from the sequence model with reward predictions yields a model-based planning method, surprisingly effective despite lacking the ensembles and pessimism mechanisms usually required to make planning with learned models effective.</li>
+                <br>
+                  <center>
+                    <img width=28% src="images/webpage_offline_halfcheetah.png">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <img width=28% src="images/webpage_offline_hopper.png">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <img width=28% src="images/webpage_offline_walker2d.png">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>
+                    <img width=50% src="images/webpage_offline_legend.png">
+                  </center>
+                <br>
+                <!-- Despite having none of the tricks employed to make planning effective with learned models, such as ensembles or distributional penalties, we find this approach surprisingly effective.</li> -->
               </ul>
           </p>
-          <br>
           </div>
         </div>
-        <br>
-        <br>
 
         <div class="content">
           <div class="text">
@@ -191,12 +233,23 @@ body {
                 <div>
                   <!-- <span class="venue">Preprint</a></span> -->
                   <span class="tag">
-                    <a href="https://arxiv.org/abs/2010.14496">Preprint</a>&nbsp;
-                    <a href="https://github.com/JannerM">Code (coming soon!)</a>&nbsp;
+                    <a href="files/trajectory-transformer.pdf">Paper</a>&nbsp;
+                    <a href="">Code (coming soon!)</a>&nbsp;
                     <!-- <a href="https://bair.berkeley.edu/blog/2021/01/05/successor/">Blog</a>&nbsp; -->
                     <!-- <a href="files/bib.txt">Bibtex</a> -->
                   </span>
                 </div>
+              </li>
+            <!-- </ul> -->
+          </div>
+        </div>
+
+        <br><br><br>
+        <div class="content">
+          <div class="text">
+              <div class="title"><b>Related Publication</b></div>
+                Chen et al concurrently proposed another sequence modeling approach to reinforcement learning. At a high-level, ours is more model-based in spirit and theirs is more model-free, which allows us to evaluate Transformers as long-horizon dynamics models (<i>e.g.</i>, in the humanoid predictions above) and allows them to evaluate their policies in image-based environments (<i>e.g.</i>, Atari).
+                <a href="https://sites.google.com/berkeley.edu/decision-transformer">We strongly encourage you to check out their work as well.</a>
               </li>
             <!-- </ul> -->
           </div>
