@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GDXSC5Y2BD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GDXSC5Y2BD');
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<script src="./files/head.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="keywords" content="Berkeley,Deep,Reinforcement,Learning,Computer Science,Machine,Artificial,Intelligence">
+
+<article class="post-content">
+  <meta name="twitter:title" content="Gamma-Models and Infinite-Horizon Prediction"/>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://people.eecs.berkeley.edu/~janner/gamma-models/images/twitter_card.png" />
+<article class="post-content">
+
+<title>Reinforcement Learning as One Big Sequence Modeling Problem</title>
+<link rel="stylesheet" href="./files/font.css">
+<link rel="stylesheet" href="./files/main.css">
+
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+<style>
+body {
+  font-family: "Computer Modern Serif", serif;
+  font-size: 15pt;
+}
+
+
+* {padding:0;margin:0;box-sizing:border-box;}
+#video {
+  position: relative;
+  padding-bottom: 45%; /* 16:9 */
+  height: 0;
+}
+#video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  transform: translateX(12.5%);
+}
+
+</style>
+
+  <style type="text/css">/**
+ * Style sheet used by new LibX tooltip code
+ */
+
+/* We insert a <div> with libx-tooltip style under the body.
+ * This will inherit body's style - we can't afford to inherit undesirable 
+ * styles and we must redefine what we need.  OTOH, some things, e.g.
+ * font-size, might be ok to be inherited to stay within the page's tone.
+ */
+.libx-tooltip {
+    display: none;
+    overflow: visible;
+    padding: 5px;
+    z-index: 100;
+    background-color: #eee;
+    color: #000;
+    font-weight: normal;
+    font-style: normal;
+    text-align: left;
+    border: 2px solid #666;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.libx-tooltip p {
+    /* override default 1em margin to keep paragraphs inside a tooltip closer together. */
+    margin: .2em;
+}
+</style><style type="text/css">/**
+ * Style sheet used by LibX autolinking code
+ */
+.libx-autolink {
+}
+
+</style>
+
+</head>
+
+  <body>
+
+    <div class="outercontainer">
+      <div class="container">
+
+        <div class="content project_title">
+          <br>
+          <h2>Reinforcement Learning as One Big<br> Sequence Modeling Problem</h2>
+        </div>
+
+        <br><br>
+
+        <video width=100% height=auto autoplay playsinline muted>
+          <source src="https://people.eecs.berkeley.edu/~janner/trajectory-transformer/images/single_step.mp4" type="video/mp4">
+        </video>
+        <p>
+        <br><br>
+
+        <div class="content">
+          <div class="text">
+            <p>
+              <b>
+                <font size="5">Summary</font>
+              </b>
+              &nbsp;
+              Lorem ipsum.
+          </p>
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="content">
+          <div class="text">
+            <p>
+              <b>
+                <font size="5">Transformers as dynamics models</font>
+              </b>
+              &nbsp;
+              Predictive dynamics models often have excellent single-step prediction error, but poor long-horizon accuracy due to compounding errors.
+              We show that transformers are more substantially more reliable long-horizon predictors than state-of-the-art single-step models, even in continuous Markovian domains.
+          </p>
+          <br>
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="content">
+          <div class="text">
+            <p>
+              <b>
+                <font size="5">Imitation, goal-reaching, and offline RL</font>
+              </b>
+              &nbsp;
+              Various control settings can be reduced to slight modifications of beam search with a sequence model.
+              <ul>
+                <li> Decoding with standard beam search is an imitative method.</li>
+                <li>Conditioning on a future desired state alongside previously-encountered states gives rise to a goal-reaching method.</li>
+                <center>
+                  <img width=33% src="images/goals/0.pdf">
+                  <img width=33% src="images/goals/1.pdf">
+                  <img width=33% src="images/goals/2.pdf">
+                </center>
+
+                <li>Replacing log-probabilities from the sequence model reward predictions recovers a model-based planning method. Despite having none of the usual tricks employed to make planning effective with learned models, such as ensembles or distributional penalties, we find this approach surprisingly effective.</li>
+              </ul>
+          </p>
+          <br>
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="content">
+          <div class="text">
+              <div class="title"><b>Reinforcement Learning as One Big Sequence Modeling Problem</b></div>
+                 <div class="authors">
+                    <a href="https://people.eecs.berkeley.edu/~janner/">Michael Janner</a>,
+                    <a href="https://scholar.google.com/citations?user=qlwwdfEAAAAJ&hl=en">Qiyang (Colin) Li</a>, and
+                    <a href="https://people.eecs.berkeley.edu/~svlevine/">Sergey Levine</a>
+                  </div>
+                <div>
+                  <!-- <span class="venue">Preprint</a></span> -->
+                  <span class="tag">
+                    <a href="https://arxiv.org/abs/2010.14496">Preprint</a>&nbsp;
+                    <a href="https://github.com/JannerM">Code (coming soon!)</a>&nbsp;
+                    <!-- <a href="https://bair.berkeley.edu/blog/2021/01/05/successor/">Blog</a>&nbsp; -->
+                    <!-- <a href="files/bib.txt">Bibtex</a> -->
+                  </span>
+                </div>
+              </li>
+            <!-- </ul> -->
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+
+<br><br><br><br>  
+
+
+</div></body></html>

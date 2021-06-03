@@ -1,0 +1,5 @@
+@inproceedings{janner2020sequence,
+  title={Reinforcement Learning as One Big Sequence Modeling Problem},
+  author={Michael Janner and Qiyang Li and Sergey Levine},
+  year={2021}
+}
