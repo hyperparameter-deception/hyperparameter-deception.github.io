@@ -26,29 +26,23 @@ document.write('\
     <link rel="shortcut icon" href="'+params["prefix"]+'images/favicon.ico">\
 ');
 
-setTimeout(function(){
-        src = document.getElementById('myimage').src
-    length = src.length
-        console.log(src.substring(length-6, length-4))
-    document.getElementById('myimage').src = 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Bengal_tiger_%28Panthera_tigris_tigris%29_female_3_crop.jpg';
-},1000);
+function append_image(id, width, i) {
+    var elem = document.createElement('img');
+    elem.src = 'images/'.concat(i).concat('.png');
+    elem.width = width;
+    elem.style.padding = "20px 20px 20px 20px";
+    console.log(elem);
 
-function increment_img(id) {
-    element = document.getElementById(id)
-    src = element.src
-    length = src.length
-
-    ind_string = src.substring(length-6, length-4)
-    ind = parseInt(ind_string, 10)
-
-    next_ind = (ind+1) % 10
-    next_ind_string = next_ind.toString().padStart(2, '0')
-
-    next_src = src.replace(ind_string, next_ind_string)
-    element.src = next_src
+    var div = document.getElementById(id)
+    div.appendChild(elem)
+    console.log(div);
 }
 
-setInterval(function() {
-    increment_img('rollout')
-    // console.log(src, next_src)
-}, 1 * 1000);
+function append_all() {
+    var id = 'attention_maps'
+    var width = 240;
+
+    for (let i = 0; i < 1000; i++) {
+        append_image(id, width, i);
+    }
+}
