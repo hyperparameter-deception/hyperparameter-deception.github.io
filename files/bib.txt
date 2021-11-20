@@ -1,5 +1,5 @@
 @inproceedings{janner2021sequence,
-  title = {Reinforcement Learning as One Big Sequence Modeling Problem},
+  title = {Offline Reinforcement Learning as One Big Sequence Modeling Problem},
   author = {Michael Janner and Qiyang Li and Sergey Levine},
   booktitle = {Advances in Neural Information Processing Systems},
   year = {2021},
