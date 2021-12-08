@@ -1,6 +1,6 @@
-@inproceedings{janner2021sequence,
-  title = {Offline Reinforcement Learning as One Big Sequence Modeling Problem},
-  author = {Michael Janner and Qiyang Li and Sergey Levine},
+@inproceedings{cooper2021,
+  title = {Hyperparameter Optimization Is Deceiving Us, and How to Stop It},
+  author = {A. Feder Cooper and Yucheng Lu and Jessica Zosa Forde and Christopher De Sa},
   booktitle = {Advances in Neural Information Processing Systems},
   year = {2021},
 }
