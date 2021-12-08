@@ -133,6 +133,8 @@ body {
               <a href="https://openreview.net/forum?id=2lZdja9xYzh">Paper</a>&nbsp;
               <!-- <a href="./trajectory-transformer-neurips-2021.pdf">Paper</a>&nbsp; -->
               <a href="https://github.com/pasta41/deception">Code</a>&nbsp;
+              <a href="https://cacioepe.pe/NeurIPS_2021_Talk.pdf">Sides</a>&nbsp;
+              <a href="https://cacioepe.pe/NeurIPS_2021_Poster.pdf">Poster</a>&nbsp;
               <a href="files/bib.txt">BibTeX</a>&nbsp;
             </span>
           </div>
@@ -143,293 +145,31 @@ body {
         <div class="content">
           <div class="text">
             <p>
-              <div class="title"><b>Summary</b></div>
 <!--               <b>
                 <font size="5">Summary</font>
               </b> -->
               <!-- &nbsp; -->
-              <br>
-              When comparing two algorithms <em>J</em> and <em>K</em>, searching one subspace can yield the conclusion that <em>J</em> outperforms <em>K</em>,
-              whereas searching another subspace can entail the opposite.  We
-              provide a theoretical complement to prior work, arguing that, to avoid such
-              deception, the process of drawing conclusions from HPO should be made more
-              rigorous. We call this process <em><b>epistemic hyperparameter optimization (EHPO)</b></em>, and
-              put forth a logical framework to capture its semantics and how it can lead to inconsistent conclusions about performance. Our framework enables us to prove EHPO
-              methods that are guaranteed to be defended against deception, given bounded
-              compute time budget <em>t</em>. We demonstrate our framework's utility by proving and
-              empirically validating a defended variant of random search.<br><br>
-
-              <em>For full details regarding our formalization of EHPO and related proofs, please refer to our <a href="https://openreview.net/forum?id=2lZdja9xYzh">paper</a>.</em>
-          </p>
-          </div>
-        </div>
-        <br>
-        <br>
-
-        
-
-        <div class="content">
-          <div class="text">
-            <p>
-              <div class="title"><b>An example illustrating the possibility of drawing inconsistent conclusions from HPO</b></div>
-              <br>
-              <center>
-                <img width=100% src="files/HPOs.png">
-                <br>
-                <i>Demonstrating the possibility of drawing inconsistent conclusions from HPO (what we
-                  shorthand hyperparameter deception) when training VGG16 on CIFAR-10</i>
-                <br>
-
-                &nbsp;
-              </center>
-<!--               <b>
-                <font size="5">Transformers as dynamics models</font>
-              </b> -->
-              <!-- &nbsp; -->
-              Recent empirical work shows that inconsistent results based on choice of hyperparameter optimization (HPO) configuration are a widespread problem in ML
-              research. In the figure on the top left, we reproduce Wilson et al., in which the authors
-              trained VGG16 with different optimizers on CIFAR-10. This experiment uses grid search,
-              with a powers-of-2 grid for the learning rate crossed with the default HPs for Adam. Based on the
-              best-performing hyperparameters per algorithm, it is reasonable to conclude that SGD and Heavy Ball out perform Adam.
-              
-              <br><br>
-
-              Using different hyper-HPs makes it possible to conclude the opposite. Inspired by Choi et al., , we
-              perform grid search over a different subspace, tuning both learning rate and Adam's epsilon parameter. Our
-              results entail the logically opposite conclusion: Non-adaptive methods do not outperform adaptive
-              ones. 
-              <br><br>
-              This example is not exceptional, or even particularly remarkable, in terms of illustrating the hyperparameter deception problem. Additional examples can be found in numerous empirical studies across ML subfields. <b>In short, the way we choose hyperparameters can deceive us. </b>
-          </p>
-          </div>
-        </div>
-
-
-        <div class="content">
-          <div class="text">
-            <p>
-              <div class="title"><b>Why statistical testing is not enough</b></div>
-              <br>
-   <!--            <b>
-              
-                <font size="5.0">
-                Beam search as trajectory optimizer
-              </font>
-              </b> -->
-               <!-- . -->
-              <!-- Various control settings can be reduced to slight modifications of beam search with a sequence model. -->
-              As the common toolkit in ML, statistics might seem like the right choice
-              for modeling all this uncertainty. Both boxplots in our example show confidence intervals
-              for the test accuracy of the best-performing hyperparameters per algorithm. 
-              While the results under consideration may be statistically significant, they can still fail
-              to prevent the possibility of yielding inconsistent conclusions.
-              <br><br>
-              Statistics is great for reasoning about uncertainty that
-              is quantifiable, yet not all of the sources of uncertainty in HPO are easily quantifiable. It is very difficult to quantify the different hyper-HP possibilities. It is not reasonable to
-              model hyper-HP selection as a random process; we do not sample from a distribution and, even if
-              we wanted to, it is not clear how we would pick the distribution from which to sample. Thus, we will require additional tools aside from
-              statistical tests to reason about these sources of uncertainty.
-              
-              
-          </p>
-          </div>
-        </div>
-
-
-        <div class="content">
-          <div class="text">
-            <p>
-              <div class="title"><b>Epistemic Hyperparameter Optimization</b></div>
-              <br>
-   <!--            <b>
-              
-                <font size="5.0">
-                Beam search as trajectory optimizer
-              </font>
-              </b> -->
-               <!-- . -->
-              <!-- Various control settings can be reduced to slight modifications of beam search with a sequence model. -->
-              It is possible to develop results that are wrong about performance, or else correct about performance but for the wrong reasons  (e.g., by picking "lucky" hyperparameters). Neither of these outcomes constitutes
-              reliable knowledge. As scientists, this is disheartening. We want to have confidence in
-              the conclusions we draw from our experiments. We want to trust that we are deriving reliable
-              knowledge about algorithm performance. 
-
-              <br><br>
-
-              To address this, we propose that
-<em><b>the process of drawing conclusions using HPO should itself be an object of study</b></em>. We formalize this
-reasoning process, which we call epistemic hyperparameter optimization (EHPO), and we provide an
-intuition for how EHPO can help us think about the hyperparameter deception problem. 
-<br><br>
-Intuitively, EHPO is
-deceptive whenever it could produce <em>p</em>, "<em>J</em> performs better than <em>K</em>", and also could (if configured differently or due to randomness)
-produce <em>not p</em>, "<em>J</em> does not perform better than <em>K</em>". That is, we can be deceived if the EHPO procedure we use to derive knowledge about
-algorithm performance could entail logically inconsistent results.
-          </p>
-          </div>
-        </div>
-
-        <br>
-        <br>
-
-        <div class="content">
-          <div class="text">
-            <p>
-              <div class="title"><b>Framing an adversary who can deceive us</b></div>
-              <br>
               <center>
                 <img width=20% src="files/demon1.png"><br>
-                <i> How the authors imagine the EHPO-running demon</i>
+                <i>"...even if it is not within mypower to know anything true, it certainly is within my power <br> to take care resolutely to withhold my assent to what is false" - Descartes</i>
                 <br>
 
                 &nbsp;
               </center>
-<!--               <b>
-                <font size="5">Transformers as dynamics models</font>
-              </b> -->
-              <!-- &nbsp; -->
-
-              To begin answering this question, we take inspiration
-              from Descartes' deceptive demon thought experiment. We frame the problem in terms
-              of a powerful adversary trying to deceive us-one that can cause us to doubt ourselves and our
-              conclusions. The demon is not a real adversary; rather, it models a worst-case setting of
-              configurations and randomness that are usually set arbitrarily or by happenstance in EHPO.
-              <br><br>
-              Imagine an evil demon who is trying to deceive us about the relative performance of different
-              algorithms via running EHPO. At any time, the demon maintains a set <em>L</em> of HPO logs, which it can
-              modify either by running an HPO with whatever hyper-HPs and seed it wants
-              or by erasing some of the logs in its set. Eventually,
-              it stops and presents us with the log <em>L</em>, from which we will draw some conclusions.
-              We want to be sure that we will not be deceived by any logs the demon could produce. This introduces
-              more uncertainty, as we need to reason about whether we believe those conclusions or not.
-          </p>
-          </div>
-        </div>
-        <br>
-        <br>
-
-        <div class="content">
-          <div class="text">
-            <p>
-              <div class="title"><b>Modal logic as a tool for EHPO</b></div>
               <br>
-          
-<!--               <b>
-                <font size="5">Transformers as dynamics models</font>
-              </b> -->
-              <!-- &nbsp; -->
-
-              Modal logic is the standard mathematical tool for formalizing reasoning about
-              uncertainty, such as what the demon could bring
-              about running EHPO.   It is meant precisely for dealing with different types of uncertainty, particularly
-              uncertainty that is difficult to quantify, and has been successfully employed for decades in AI, programming languages,
-              and distributed systems. Modal logic's flexible semantics has been indispensable for writing proofs
-              about higher-level specifications with multiple sources of not-precisely-quantifiable, lower-level
-              uncertainty. Analogously, modal logic can capture the uncertainty in EHPO without
-              being prescriptive about particular hyper-HP choices. By constructing the right semantics, we can capture all
-              the sources of uncertainty described above and we can write simple proofs about whether we can
-              be deceived by the EHPO we run. 
-
-              <br><br>
-              Modal logic inherits the tools of more-familiar propositional logic and adds two operators for 
-              possibility and necessity. These operators enable reasoning about possible
-              worlds-a semantics for representing how the world is or could be, making modal logic the natural
-              choice to express the "could" intuition. 
-              
-              <br><br>Our logic requires an extension of standard modal logic. We define two modal operators to
-              reckon with two overarching modalities: the possible results of the demon running EHPO, and
-              our beliefs about conclusions from those results, which are formally discussed in section 4 of our paper. These operators can interact to formally
-              express a notion of hyperparameter deception: if there exists a strategy by
-              which the demon could get us to conclude <em>p</em> in <em>t</em> expected time, then there can exist no <em>t</em>-time
-              strategy by which the demon could have gotten us to believe <em>not p</em>.
+              Recent empirical work shows that inconsistent results based on choice of hyperparameter optimization (HPO) configuration are a widespread problem in ML research.
+              When comparing two algorithms <em>J</em> and <em>K</em>, searching one subspace can yield the conclusion that <em>J</em>  outperforms <em>K</em>, whereas searching another can entail the opposite.
+              In short, the way we choose hyperparameters can deceive us. 
+              We provide a theoretical complement to this prior work, arguing that, to avoid such deception, <em><b>the process of drawing conclusions from HPO should be made more rigorous</b></em>.
+              We call this <b><em>epistemic hyperparameter optimization (EHPO)</em></b>, and put forth a logical framework to capture its semantics and how it can lead to inconsistent conclusions about performance.
+              Our framework enables us to prove EHPO methods that are guaranteed to be defended against deception, given bounded compute time budget <em>t</em>.
+              We demonstrate our framework's utility by proving and empirically validating a defended variant of random search.
           </p>
           </div>
         </div>
         <br>
         <br>
 
-        <div class="content">
-          <div class="text">
-            <p>
-              <div class="title"><b>Constructing defended EHPO</b></div>
-              <br>
-
-              <center>
-                <img width=60% src="files/table1.png"><br>
-                <i> Results from repeating our experiment, using a defended EHPO based on a variant of random search instead of grid search (section 5). <br><em>p</em> = "Non-adaptive
-                  optimizers (SGD and HB) perform better
-                  than the adaptive optimizer Adam".</i>
-                <br>
-
-                &nbsp;
-              </center>
-              
-<!--               <b>
-                <font size="5">Transformers as dynamics models</font>
-              </b> -->
-              <!-- &nbsp; -->
-
-              With a formal notion of what it means for EHPO to be (non)-deceptive, we can
-              write proofs about what it means for an EHPO method to be guaranteed to be deception-free. 
-              We begin by supposing we have a naive EHPO featuring a
-              naive reasoner, <em>B</em>n. We want to construct a new "defended
-              reasoner", <em>B</em><b>*</b>, which concludes <em>p</em> only if both the naive reasoner, <em>B</em>n,
-              would have concluded <em>p</em>, and it is impossible for an adversary to get <em>B</em>n to conclude <em>not p</em> in time <em>t</em>.
-              <br><br>
-              Directly from our axioms described in section 4 of our paper, we prove <em>B</em><b>*</b> is defended in section 5.  Our analysis shows that a t-defended reasoner <em>B</em><b>*</b> is
-              always possible, and it does so without needing to refer to the particular underlying semantics of an EHPO. 
-              We next suggest a concrete defended EHPO based on a variant of random search
-              with a defended <em>B</em><b>*</b>, and show how deception can be avoided in our example above by using this
-              EHPO instead of grid search. 
-          </p>
-          </div>
-        </div>
-        <br>
-        <br>
-        <div class="content">
-          <div class="text">
-            <p>
-              <div class="title"><b>Practical Take Aways</b></div>
-              <br>
-              
-<!--               <b>
-                <font size="5">Transformers as dynamics models</font>
-              </b> -->
-              <!-- &nbsp; -->
-
-              It is easy to draw inconsistent conclusions from HPO. We call this problem hyperparameter deception and, to derive a defense,
-              argue that the process of drawing conclusions using HPO should itself be an object of study. In our paper, we take inspiration from Descartes' demon and formalize a logic for studying an epistemic HPO
-              procedure. The demon can run any number of reproducible HPO passes to try to get us to believe a
-              particular notion about algorithm performance. Our formalization enables us to not believe deceptive
-              notions: It naturally suggests how to guarantee that an EHPO is defended against deception.
-              <br><br>
-              We offer recommendations to avoid hyperparameter deception in practice (we expand on this in the Appendix):
-              <br><br>
-              <ul>
-                <li>Researchers should construct their own notion of skepticism, appropriate to their specific
-                  task. <b><em>There is no one-size-fits-all defense solution.</em></b> Our results are broad insights about defended
-                  EHPO: A defended EHPO is always possible, but finding an efficient one will depend on the task.</li><br>
-                <li><b><em>Researchers should make explicit how they choose hyper-HPs.</em></b> What is reasonable is ultimately
-                  a function of what the ML community accepts. Being explicit, rather than eliding hyper-HP choices,
-                  is essential for helping decide what is reasonable. As a heuristic, we recommend setting hyper-HPs
-                  such that they include HPs for which the optimizers' performance starts to degrade, as we do above.</li>
-
-                  <br><li>Avoiding hyperparameter deception is just as important as reproducibility.
-                    <b><em>Reproducibility is only part of the story for ensuring reliability.</em></b> While
-                    necessary for guarding against brittle findings, it is not sufficient. We can replicate results-even
-                    statistically significant ones-that suggest conclusions that are altogether wrong.</li>
-              </ul>
-              More generally, our work is a call to researchers to reason more rigorously about their beliefs
-              concerning algorithm performance. In relation to EHPO, this is akin to challenging researchers to
-              reify their notion of <em>B</em>-to justify their belief in their conclusions from the HPO. We believe that applying similar rigor will
-              contribute significantly to the ongoing effort of making ML more robust and reliable.
-
-          </p>
-          </div>
-        </div>
-        <br>
-        <br>
-        
         
 
 
